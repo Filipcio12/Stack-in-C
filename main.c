@@ -17,8 +17,14 @@ bool isEmpty(Stack* s);
 
 int main()
 {
-    printf("Hello World");
-
+    Stack stack;
+    init(&stack);
+    push(&stack, 5);
+    push(&stack, 2);
+    printf("%d", pop(&stack));
+    printf("%d", pop(&stack));
+    printf("%d", pop(&stack));
+    destroy(&stack);
     return 0;
 }
 
@@ -48,11 +54,19 @@ void push(Stack* s, int element)
         }
         s->size = newSize;
     }
-    s->data[top++] = element;
+    s->data[s->top++] = element;
 }
 
 int pop(Stack* s) 
 {
     assert(s->top > 0);
     return s->data[--s->top];
+}
+
+bool isEmpty(Stack* s)
+{
+    if (s->top <= 0) {
+        return 1;
+    }
+    return 0;
 }
