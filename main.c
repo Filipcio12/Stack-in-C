@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <assert.h>
 
 typedef struct {
     size_t top;
@@ -48,4 +49,10 @@ void push(Stack* s, int element)
         s->size = newSize;
     }
     s->data[top++] = element;
+}
+
+int pop(Stack* s) 
+{
+    assert(s->top > 0);
+    return s->data[--s->top];
 }
