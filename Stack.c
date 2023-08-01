@@ -12,19 +12,22 @@ void destroy(Stack* s)
     free(s->data);
 }
 
+void incrementSize(Stack* s)
+{
+    size_t newSize = (s->size + 1) * 2;
+    int* newData = (int*)realloc(s->data, newSize * sizeof(int));
+    if (!newData) {
+        free(s->data);
+        abort();
+    }
+    s->data = newData;
+    s->size = newSize;
+}
+
 void push(Stack* s, int element)
 {
     if (s->top >= s->size) {
-        size_t newSize = (s->size + 1) * 2;
-        int* newData = (int*)realloc(s->data, newSize * sizeof(int));
-        if (newData) {
-            s->data = newData;
-        }
-        else {
-            free(s->data);
-            abort();
-        }
-        s->size = newSize;
+        incrementSize(s);
     }
     s->data[s->top++] = element;
 }

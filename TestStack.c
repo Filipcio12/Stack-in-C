@@ -8,7 +8,6 @@ int main()
     push(&stack, 2);
     printf("%d", pop(&stack));
     printf("%d", pop(&stack));
-    printf("%d", pop(&stack));
     destroy(&stack);
     return 0;
 }
