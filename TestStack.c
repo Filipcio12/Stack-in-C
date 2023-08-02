@@ -1,13 +1,19 @@
 #include "Stack.h"
+#include <stdio.h>
 
-int main() 
-{
+int main() {
     Stack stack;
     init(&stack);
-    push(&stack, 5);
-    push(&stack, 2);
-    printf("%d", pop(&stack));
-    printf("%d", pop(&stack));
+
+    push(&stack, 10);
+    push(&stack, 20);
+    push(&stack, 30);
+
+    printf("Pop: %d\n", pop(&stack));
+    printf("Pop: %d\n", pop(&stack));
+    printf("Pop: %d\n", pop(&stack));
+
     destroy(&stack);
+
     return 0;
 }

@@ -1,52 +1,52 @@
 #include "Stack.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-void init(Stack* s)
-{
-    s->top = 0;
+#define INITIAL_CAPACITY 10
+#define GROWTH_FACTOR 2
+
+void init(Stack* s) {
+    s->data = (int*)malloc(INITIAL_CAPACITY * sizeof(int));
+    if (s->data == NULL) {
+        printf("Memory allocation failed\n");
+        exit(EXIT_FAILURE);
+    }
+    s->capacity = INITIAL_CAPACITY;
     s->size = 0;
-    s->data = NULL;
 }
 
-void destroy(Stack* s) 
-{
+void destroy(Stack* s) {
     free(s->data);
+    s->data = NULL;
+    s->capacity = 0;
+    s->size = 0;
 }
 
-void incrementSize(Stack* s)
-{
-    size_t newSize = (s->size + 1) * 2;
-    int* newData = (int*)realloc(s->data, newSize * sizeof(int));
-    if (!newData) {
-        free(s->data);
+void push(Stack* s, int element) {
+    if (s->size == s->capacity) {
+        int newCapacity = s->capacity * GROWTH_FACTOR;
+        int* newData = (int*)realloc(s->data, newCapacity * sizeof(int));
+        if (newData == NULL) {
+            printf("Memory reallocation failed\n");
+            exit(EXIT_FAILURE);
+        }
+        s->data = newData;
+        s->capacity = newCapacity;
+    }
+    s->data[s->size] = element;
+    s->size++;
+}
+
+int pop(Stack* s) {
+    if (isEmpty(s)) {
+        printf("Error: Stack is empty\n");
         abort();
     }
-    s->data = newData;
-    s->size = newSize;
+    int element = s->data[s->size - 1];
+    s->size--;
+    return element;
 }
 
-void push(Stack* s, int element)
-{
-    if (s->top >= s->size) {
-        incrementSize(s);
-    }
-    s->data[s->top++] = element;
-}
-
-int pop(Stack* s) 
-{
-    //assert(s->top > 0);
-    if (!(s->top > 0)) {
-        free(s->data);
-        fprintf(stderr, "Can't pop from an empty stack.");
-        abort();
-    }
-    return s->data[--s->top];
-}
-
-bool isEmpty(Stack* s)
-{
-    if (s->top <= 0) {
-        return 1;
-    }
-    return 0;
+bool isEmpty(Stack* s) {
+    return s->size == 0;
 }

@@ -1,13 +1,11 @@
 #pragma once
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
 
 typedef struct {
-    size_t top;
-    size_t size;
     int* data;
+    int capacity;
+    int size;
 } Stack;
 
 void init(Stack* s);
