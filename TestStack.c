@@ -6,8 +6,9 @@ int main()
     init(&stack);
     push(&stack, 5);
     push(&stack, 2);
-    printf("%d", pop(&stack));
-    printf("%d", pop(&stack));
+    printf("Pop: %d\n", pop(&stack));
+    printf("Pop: %d\n", pop(&stack));
+    printf("Pop: %d\n", pop(&stack));
     destroy(&stack);
     return 0;
 }
