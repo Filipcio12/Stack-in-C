@@ -37,7 +37,7 @@ int pop(Stack* s)
     //assert(s->top > 0);
     if (!(s->top > 0)) {
         free(s->data);
-        fprintf(stderr, "Can't pop from an empty stack.");
+        fprintf(stderr, "Can't pop from an empty stack.\n");
         abort();
     }
     return s->data[--s->top];
