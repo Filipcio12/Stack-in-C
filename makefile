@@ -8,7 +8,7 @@ sources = Stack.c TestStack.c
 executable = myprogram
 
 $(executable): $(headers) $(sources)
-	g++ -g -Wall -pedantic $(sources) -o $(executable)
+	gcc -g -Wall -pedantic $(sources) -o $(executable)
 
 .PHONY: clean
 clean:

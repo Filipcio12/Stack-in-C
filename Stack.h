@@ -1,6 +1,5 @@
 #pragma once
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -14,4 +13,4 @@ void init(Stack* s);
 void destroy(Stack* s);
 void push(Stack* s, int element);
 int pop(Stack* s);
-bool isEmpty(Stack* s);
+bool isEmpty(const Stack* s);

@@ -1,14 +1,25 @@
 #include "Stack.h"
+#include <stdio.h>
 
-int main() 
+int main()
 {
-    Stack stack;
-    init(&stack);
-    push(&stack, 5);
-    push(&stack, 2);
-    printf("Pop: %d\n", pop(&stack));
-    printf("Pop: %d\n", pop(&stack));
-    printf("Pop: %d\n", pop(&stack));
-    destroy(&stack);
-    return 0;
+	Stack stack;
+	init(&stack);
+	
+	for (size_t i = 0; i < 1000; ++i) {
+		push(&stack, i);
+	}
+	
+	for (size_t i = 0; i < 1000; ++i) {
+		printf("%d\n", pop(&stack));
+	}
+	
+	if (isEmpty(&stack)) {
+		printf("Stack is empty!");
+	}
+	
+	pop(&stack);
+	
+	destroy(&stack);
+	return 0;
 }
