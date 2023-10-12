@@ -47,8 +47,5 @@ int pop(Stack* s)
 
 bool isEmpty(const Stack* s)
 {
-	if (s->top <= 0) {
-		return 1;
-	}
-	return 0;
+	return (s->top <= 0);
 }

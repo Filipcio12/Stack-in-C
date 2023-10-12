@@ -18,7 +18,7 @@ int main()
 		printf("Stack is empty!");
 	}
 	
-	pop(&stack);
+	//pop(&stack);
 	
 	destroy(&stack);
 	return 0;
